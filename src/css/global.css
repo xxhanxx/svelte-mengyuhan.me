@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-primary: #2c514c;
+        --color-primary-hover: rgba(42, 81, 76, 0.5);
+        --postCard-bgColor-hover: rgba(42, 81, 76, 0.05);
+        --bgColor-primary: rgba(42, 81, 76);
+        --bgColor-primary-hover: rgba(42, 81, 76, 0.9);
+        --bgColor-primary-active: rgba(34, 65, 62);
+        --bgColor-outline-hover: rgba(42, 81, 76, 0.12);
+        --bgColor-outline-active: rgba(42, 81, 76, 0.08);
+    }
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+input,
+textarea {
+    transition: .24s;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    --tw-border-opacity: 1;
+    border-color: rgb(229 231 235 / var(--tw-border-opacity));
+    border-width: 1px;
+    border-radius: 0.375rem;
+    width: 100%;
+}
+
+
+input:focus,
+textarea:focus {
+    border-color: var(--color-primary);
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
