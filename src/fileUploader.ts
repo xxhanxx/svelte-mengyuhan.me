@@ -45,17 +45,12 @@ class fileUploader {
         }
     }
     private changeProgress(num: number): void {
-        this.t = setInterval(() => {
-            if (this.progress == num) {
-                clearInterval(this.t)
-                if (this.progress >= 100) {
-                    this.final();
-                }
-            } else {
-                this.progress++;
-                this.processCallBack(this.progress);
-            }
-        }, 1);
+        if (this.progress + 1 === num) {
+            this.final();
+        } else {
+            this.progress++;
+            this.processCallBack(this.progress / num * 100);
+        }
     };
 
     async upload(chunkArr: any = []): Promise<void> {
@@ -63,16 +58,12 @@ class fileUploader {
             const chunkAllNum: number = chunkArr.length;
             let count: number = 0;
             for (let i = 0; i < chunkAllNum; i++) {
-                console.log('index: ', i);
                 chunkArr[i].arrayBuffer().then(async (data: object) => {
                     let res: QiniuUploadResp = await this.qiniuUploadFragment(data, i);
-                    if (res.data.etag) {
-                        console.log('upload resp:', res.data);
-                        count++;
-                        this.changeProgress(count / chunkAllNum * 100);
-                        this.reqChunkArr.splice(i, 0, { partNumber: i + 1, etag: res.data.etag })
-                    }
-
+                    this.reqChunkArr.splice(i, 0, { partNumber: i + 1, etag: res.data.etag })
+                    count++;
+                    this.changeProgress(chunkAllNum);
+                    
                 })
             }
         } else if (this.uploadDetails.method === 1) {
@@ -152,6 +143,9 @@ class fileUploader {
                     this.uploadDetails.key.length
                 )}`);
         }
+
+
+        clearInterval(this.t)
 
     };
 }
