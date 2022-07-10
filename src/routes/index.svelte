@@ -23,7 +23,7 @@
 		powered by <a target="_blank" href="https://nuxtjs.org">nuxt.js</a>.
 	</p>
 	<p>
-		and this website is powerd by <a target="_blank" href="https://kit.svelte.dev">sveltekit</a>.
+		and this website is powered by <a target="_blank" href="https://kit.svelte.dev">sveltekit</a>.
 	</p>
 	<p class="mt-4">
 		contact me: <a target="_blank" href="https://t.me/sleeeepydude">t.me/sleeeepydude</a>
