@@ -45,3 +45,10 @@ textarea:focus {
 .form-group {
     margin-bottom: 10px;
 }
+
+.hightlight {
+    padding: .3rem;
+    border-radius: 5px;
+    color: white;
+    background-color: var(--color-primary);
+}

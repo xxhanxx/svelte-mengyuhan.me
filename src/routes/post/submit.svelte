@@ -1,13 +1,6 @@
-<script context="module">
-	import { pageNameStore } from '../../stores/pageName';
-	import { mainStore } from '../../stores/main';
-	pageNameStore.set('Submit Post');
-</script>
-
 <script type="typescript">
 	import Button from '../../components/button/index.svelte';
-	pageNameStore.set('Submit Post');
-
+	import { mainStore } from '../../stores/main';
 	let submitBtnDisabled = false;
 	let titleTxt: string = '',
 		contentTxt: string = '';

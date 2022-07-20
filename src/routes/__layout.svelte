@@ -1,33 +1,12 @@
-<script context="module">
-	import { get } from 'svelte/store';
-	import { pageNameStore } from '../stores/pageName';
-	export async function load() {
-		let headerTitle = get(pageNameStore);
-		if (headerTitle) {
-			return {
-				props: {
-					headerTitle
-				}
-			};
-		} else {
-			return {};
-		}
-	}
-</script>
-
 <script type="typescript">
-	export let headerTitle: string;
+	let headerTitle: string = 'MENGYUHAN.ME';
 	import Nav from '../components/nav.svelte';
 	import Footer from '../components/footer.svelte';
 	import BackToTop from '../components/backToTop.svelte';
 	import '../css/global.css';
 
-	$: if ($pageNameStore && $pageNameStore !== '') {
-		headerTitle = $pageNameStore;
-	}
-
-    let showOnPx = 200;
-    let hidden = true;
+	let showOnPx = 200;
+	let hidden = true;
 	function handleOnScroll() {
 		if (!document.documentElement) return;
 		hidden = document.documentElement.scrollTop <= showOnPx;

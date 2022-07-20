@@ -1,21 +1,31 @@
 <script type="typescript">
+	import { goto } from '$app/navigation';
+	let buttonProps = {
+		class: [$$restProps.class]
+	};
+
 	let className: string = '';
 	export { className as class };
 	export let type: string = '',
+		to: string = '',
 		disabled: boolean = false,
 		file: boolean = false,
 		outlined: boolean = false,
 		icon: boolean = false;
-
+	className += ' yuhan-btn';
 	if (outlined) className += ' outlined';
 	if (icon) className += ' icon-btn';
+
+	function target() {
+		if (to) goto(to);
+	}
 </script>
 
-<button {type} {disabled} class={className} on:click on:change>
+<button {...buttonProps} {type} {disabled} class={className} on:click={target} on:change>
 	{#if file}
 		<input {disabled} type="file" id="upload" class="file-input" hidden />
 		<label for="upload" />
-		<span class="slot-container">
+		<span class="slot-container justify-center align-center">
 			<div class="icon">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +43,7 @@
 			<slot />
 		</span>
 	{:else}
-		<span class="slot-container">
+		<span on:click class="slot-container justify-center align-center">
 			<slot />
 		</span>
 	{/if}
@@ -48,62 +58,65 @@
 		height: 100%;
 		cursor: pointer;
 	}
-	button {
+	.yuhan-btn {
+		display: block;
 		position: relative;
+		text-decoration: none;
 		border: none;
 		background-color: var(--bgColor-primary);
 		font-size: 16px;
 		color: #fff;
-		padding: 0.6rem 0.8rem;
 		border-radius: 5px;
 		cursor: pointer;
 		transition: all 0.24s ease-in-out;
 	}
-	button :global(svg) {
+	.yuhan-btn :global(svg) {
 		fill: #fff;
 	}
-	button.outlined {
+	.yuhan-btn.outlined {
 		background-color: transparent;
 		border: 2px soild var(--bgColor-primary) !important;
 		color: var(--bgColor-primary);
 	}
 
-	button:hover {
+	.yuhan-btn:hover {
 		background-color: var(--bgColor-primary-hover);
 	}
-	button.outlined:hover {
+	.yuhan-btn.outlined:hover {
 		background-color: var(--bgColor-outline-hover);
 	}
-	button :global(svg) {
+	.yuhan-btn :global(svg) {
 		fill: #fff;
 	}
-	button.outlined :global(svg) {
+	.yuhan-btn.outlined :global(svg) {
 		fill: var(--bgColor-primary);
 	}
-	button:active {
+	.yuhan-btn:active {
 		background-color: var(--bgColor-primary-active);
 	}
-	button.outlined:active {
+	.yuhan-btn.outlined:active {
 		background-color: var(--bgColor-outline-active);
 	}
-	button:disabled {
+	.yuhan-btn:disabled {
 		cursor: default !important;
 		background-color: rgba(0, 0, 0, 0.12) !important;
 		color: rgba(0, 0, 0, 0.26) !important;
 	}
-	button:disabled label {
+	.yuhan-btn:disabled label {
 		cursor: default !important;
 	}
-	button:disabled :global(svg) {
+	.yuhan-btn:disabled :global(svg) {
 		fill: rgba(0, 0, 0, 0.26) !important;
 	}
-	button .slot-container {
+	.yuhan-btn .slot-container {
 		display: flex;
+
+		padding: 0.6rem 0.8rem;
 	}
-	button .slot-container .icon {
+	.yuhan-btn .slot-container .icon {
 		padding-right: 4px;
 	}
-	button .slot-container svg {
+	.yuhan-btn .slot-container svg {
 		transition: 0.24s;
 	}
 </style>

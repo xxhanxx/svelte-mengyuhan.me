@@ -1,8 +1,7 @@
-
 <script type="typescript">
-    import type Post from '../../interfaces/post.interface';
-    import PostCard from './postCard.svelte';
-	export let posts : Post[];
+	import type Post from '../../interfaces/post.interface';
+	import PostCard from './postCard.svelte';
+	export let posts: Post[];
 </script>
 
 {#if posts}

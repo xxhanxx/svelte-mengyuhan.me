@@ -1,16 +1,12 @@
 <script context="module">
 	import { get } from 'svelte/store';
 	import { mainStore } from '../stores/main';
-	import { pageNameStore } from '../stores/pageName';
-	pageNameStore.set('Posts');
 	let baseUrl = get(mainStore).baseUrl;
 	export async function load() {
 		const url = baseUrl + '/api/post/get';
 		const res = await fetch(url);
 		const posts = await res.json();
-		return {
-			props: { posts }
-		};
+		if (posts) return { props: { posts } };
 	}
 </script>
 
@@ -18,8 +14,6 @@
 	import type Post from '../interfaces/post.interface';
 	import PostsList from '../components/posts/postsList.svelte';
 	export let posts: Post[];
-
-	pageNameStore.set('Posts');
 
 	let searchTxt = '';
 	let filteredPosts: Post[];

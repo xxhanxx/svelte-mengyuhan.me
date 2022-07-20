@@ -36,7 +36,8 @@
 		right: 4vh;
 	}
 	#backToTop :global(.backToTopBtn) {
-		padding: 10px;
+		height: 48px;
+		width: 48px;
 		color: white;
 	}
 </style>

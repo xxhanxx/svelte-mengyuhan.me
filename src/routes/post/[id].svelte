@@ -1,7 +1,6 @@
 <script context="module">
 	import { get } from 'svelte/store';
 	import { mainStore } from '../../stores/main';
-	import { pageNameStore } from '../../stores/pageName';
 
 	let baseUrl = get(mainStore).baseUrl;
 	// @ts-ignore
@@ -10,12 +9,10 @@
 		const res = await fetch(url);
 		const post = await res.json();
 		if (post && post._id) {
-			pageNameStore.set(`${post.title}`);
 			return {
 				props: { post }
 			};
 		} else {
-			pageNameStore.set(`404 NOT FOUND`);
 			return {
 				props: { post: null }
 			};
@@ -26,8 +23,7 @@
 <script type="typescript">
 	import type Post from '../../interfaces/post.interface';
 	import SvelteMarkdown from 'svelte-markdown';
-	export let post: Post;
-	pageNameStore.set(`${post ? post.title : '404 NOT FOUND'}`);
+	export let post: Post;	
 </script>
 
 <svelte:head>

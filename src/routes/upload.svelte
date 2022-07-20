@@ -133,6 +133,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Upload - mengyuhan.me</title>
+</svelte:head>
+
 <div class="upload">
 	{#if !successedUpload}
 		<div class="form-group">
